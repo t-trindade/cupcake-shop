@@ -1,3 +1,4 @@
+import '/backend/supabase/supabase.dart';
 import '/components/menu_lateral_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
@@ -11,6 +12,7 @@ class AdminitrarprodutosModel
   // State field(s) for DropDown widget.
   String? dropDownValue;
   FormFieldController<String>? dropDownValueController;
+  Stream<List<CupcakesRow>>? gridViewSupabaseStream;
   // Model for MenuLateral component.
   late MenuLateralModel menuLateralModel;
 

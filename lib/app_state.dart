@@ -73,4 +73,10 @@ class FFAppState extends ChangeNotifier {
   set id(int value) {
     _id = value;
   }
+
+  bool _changeImageInProduct = false;
+  bool get changeImageInProduct => _changeImageInProduct;
+  set changeImageInProduct(bool value) {
+    _changeImageInProduct = value;
+  }
 }

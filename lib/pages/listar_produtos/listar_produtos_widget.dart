@@ -108,10 +108,12 @@ class _ListarProdutosWidgetState extends State<ListarProdutosWidget> {
                       ),
                     ),
                     Expanded(
-                      child: FutureBuilder<List<CupcakesRow>>(
-                        future: CupcakesTable().queryRows(
-                          queryFn: (q) => q,
-                        ),
+                      child: StreamBuilder<List<CupcakesRow>>(
+                        stream: _model.gridViewSupabaseStream ??= SupaFlow
+                            .client
+                            .from("Cupcakes")
+                            .stream(primaryKey: ['id']).map((list) =>
+                                list.map((item) => CupcakesRow(item)).toList()),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
                           if (!snapshot.hasData) {

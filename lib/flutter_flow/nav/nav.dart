@@ -66,6 +66,37 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'Adminitrarprodutos',
           path: '/adminitrarprodutos',
           builder: (context, params) => const AdminitrarprodutosWidget(),
+        ),
+        FFRoute(
+          name: 'AdcionarNovoProduto',
+          path: '/adcionarNovoProduto',
+          builder: (context, params) => const AdcionarNovoProdutoWidget(),
+        ),
+        FFRoute(
+          name: 'EditarProduto',
+          path: '/editarProduto',
+          builder: (context, params) => EditarProdutoWidget(
+            id: params.getParam(
+              'id',
+              ParamType.int,
+            ),
+            image: params.getParam(
+              'image',
+              ParamType.FFUploadedFile,
+            ),
+            nome: params.getParam(
+              'nome',
+              ParamType.String,
+            ),
+            sabor: params.getParam(
+              'sabor',
+              ParamType.String,
+            ),
+            valor: params.getParam(
+              'valor',
+              ParamType.String,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

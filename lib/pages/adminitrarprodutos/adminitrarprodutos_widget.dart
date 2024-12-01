@@ -155,10 +155,12 @@ class _AdminitrarprodutosWidgetState extends State<AdminitrarprodutosWidget> {
                       ],
                     ),
                     Expanded(
-                      child: FutureBuilder<List<CupcakesRow>>(
-                        future: CupcakesTable().queryRows(
-                          queryFn: (q) => q,
-                        ),
+                      child: StreamBuilder<List<CupcakesRow>>(
+                        stream: _model.gridViewSupabaseStream ??= SupaFlow
+                            .client
+                            .from("Cupcakes")
+                            .stream(primaryKey: ['id']).map((list) =>
+                                list.map((item) => CupcakesRow(item)).toList()),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
                           if (!snapshot.hasData) {
@@ -202,11 +204,45 @@ class _AdminitrarprodutosWidgetState extends State<AdminitrarprodutosWidget> {
                                     Align(
                                       alignment:
                                           const AlignmentDirectional(1.0, -1.0),
-                                      child: Icon(
-                                        Icons.edit_outlined,
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        size: 24.0,
+                                      child: InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed(
+                                            'EditarProduto',
+                                            queryParameters: {
+                                              'id': serializeParam(
+                                                gridViewCupcakesRow.id,
+                                                ParamType.int,
+                                              ),
+                                              'image': serializeParam(
+                                                functions.convertBase64ToImage(
+                                                    gridViewCupcakesRow.image),
+                                                ParamType.FFUploadedFile,
+                                              ),
+                                              'nome': serializeParam(
+                                                gridViewCupcakesRow.nome,
+                                                ParamType.String,
+                                              ),
+                                              'sabor': serializeParam(
+                                                gridViewCupcakesRow.sabor,
+                                                ParamType.String,
+                                              ),
+                                              'valor': serializeParam(
+                                                gridViewCupcakesRow.valor,
+                                                ParamType.String,
+                                              ),
+                                            }.withoutNulls,
+                                          );
+                                        },
+                                        child: Icon(
+                                          Icons.edit_outlined,
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          size: 24.0,
+                                        ),
                                       ),
                                     ),
                                     ClipRRect(
@@ -270,10 +306,19 @@ class _AdminitrarprodutosWidgetState extends State<AdminitrarprodutosWidget> {
                                     letterSpacing: 0.0,
                                   ),
                         ),
-                        Icon(
-                          Icons.add_circle_sharp,
-                          color: FlutterFlowTheme.of(context).primary,
-                          size: 30.0,
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed('AdcionarNovoProduto');
+                          },
+                          child: Icon(
+                            Icons.add_circle_sharp,
+                            color: FlutterFlowTheme.of(context).primary,
+                            size: 30.0,
+                          ),
                         ),
                       ].divide(const SizedBox(width: 8.0)),
                     ),

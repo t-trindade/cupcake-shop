@@ -24,3 +24,20 @@ FFUploadedFile? convertBase64ToImage(String? base64String) {
     return null;
   }
 }
+
+String? convertImageToBase64(FFUploadedFile? image) {
+  // Verifica se a imagem ou os bytes são nulos
+  if (image == null || image.bytes == null) {
+    return null;
+  }
+
+  // Converte os bytes da imagem para uma string Base64
+  try {
+    String base64Image = base64Encode(image
+        .bytes!); // Usa o operador "!" para garantir que os bytes não são nulos
+    return base64Image;
+  } catch (e) {
+    // Retorna uma mensagem de erro em caso de falha
+    return 'Error encoding image to Base64: $e';
+  }
+}
