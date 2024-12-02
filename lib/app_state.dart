@@ -79,4 +79,68 @@ class FFAppState extends ChangeNotifier {
   set changeImageInProduct(bool value) {
     _changeImageInProduct = value;
   }
+
+  List<int> _orderItens = [];
+  List<int> get orderItens => _orderItens;
+  set orderItens(List<int> value) {
+    _orderItens = value;
+  }
+
+  void addToOrderItens(int value) {
+    orderItens.add(value);
+  }
+
+  void removeFromOrderItens(int value) {
+    orderItens.remove(value);
+  }
+
+  void removeAtIndexFromOrderItens(int index) {
+    orderItens.removeAt(index);
+  }
+
+  void updateOrderItensAtIndex(
+    int index,
+    int Function(int) updateFn,
+  ) {
+    orderItens[index] = updateFn(_orderItens[index]);
+  }
+
+  void insertAtIndexInOrderItens(int index, int value) {
+    orderItens.insert(index, value);
+  }
+
+  List<int> _listValor = [];
+  List<int> get listValor => _listValor;
+  set listValor(List<int> value) {
+    _listValor = value;
+  }
+
+  void addToListValor(int value) {
+    listValor.add(value);
+  }
+
+  void removeFromListValor(int value) {
+    listValor.remove(value);
+  }
+
+  void removeAtIndexFromListValor(int index) {
+    listValor.removeAt(index);
+  }
+
+  void updateListValorAtIndex(
+    int index,
+    int Function(int) updateFn,
+  ) {
+    listValor[index] = updateFn(_listValor[index]);
+  }
+
+  void insertAtIndexInListValor(int index, int value) {
+    listValor.insert(index, value);
+  }
+
+  int _ratingStar = 0;
+  int get ratingStar => _ratingStar;
+  set ratingStar(int value) {
+    _ratingStar = value;
+  }
 }

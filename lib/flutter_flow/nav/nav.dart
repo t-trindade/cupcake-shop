@@ -97,6 +97,47 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               ParamType.String,
             ),
           ),
+        ),
+        FFRoute(
+          name: 'pedidos',
+          path: '/pedidos',
+          builder: (context, params) => const PedidosWidget(),
+        ),
+        FFRoute(
+          name: 'Checkout',
+          path: '/checkout',
+          builder: (context, params) => CheckoutWidget(
+            listIds: params.getParam<int>(
+              'listIds',
+              ParamType.int,
+              isList: true,
+            ),
+            listValor: params.getParam<int>(
+              'listValor',
+              ParamType.int,
+              isList: true,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'checkout_payment',
+          path: '/checkoutPayment',
+          builder: (context, params) => CheckoutPaymentWidget(
+            valorTotal: params.getParam(
+              'valorTotal',
+              ParamType.int,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'confirmacaPagamento',
+          path: '/confirmacaPagamento',
+          builder: (context, params) => ConfirmacaPagamentoWidget(
+            valorTotal: params.getParam(
+              'valorTotal',
+              ParamType.int,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

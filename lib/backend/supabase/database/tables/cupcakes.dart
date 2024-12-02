@@ -29,8 +29,8 @@ class CupcakesRow extends SupabaseDataRow {
   String? get sabor => getField<String>('sabor');
   set sabor(String? value) => setField<String>('sabor', value);
 
-  String? get valor => getField<String>('valor');
-  set valor(String? value) => setField<String>('valor', value);
+  int? get valor => getField<int>('valor');
+  set valor(int? value) => setField<int>('valor', value);
 
   String? get image => getField<String>('image');
   set image(String? value) => setField<String>('image', value);

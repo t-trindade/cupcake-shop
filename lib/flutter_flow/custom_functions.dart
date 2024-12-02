@@ -41,3 +41,19 @@ String? convertImageToBase64(FFUploadedFile? image) {
     return 'Error encoding image to Base64: $e';
   }
 }
+
+int? priceSumary(List<int>? prices) {
+  if (prices == null || prices.isEmpty) {
+    return null;
+  }
+  return prices.reduce((value, element) => value + element);
+}
+
+dynamic newCustomFunction(List<int>? listId) {
+  // convert listIds in json
+  if (listId == null || listId.isEmpty) {
+    return null;
+  }
+
+  return jsonEncode(listId);
+}

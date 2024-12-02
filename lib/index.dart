@@ -10,3 +10,9 @@ export '/pages/adcionar_novo_produto/adcionar_novo_produto_widget.dart'
     show AdcionarNovoProdutoWidget;
 export '/pages/editar_produto/editar_produto_widget.dart'
     show EditarProdutoWidget;
+export '/pages/pedidos/pedidos_widget.dart' show PedidosWidget;
+export '/pages/checkout/checkout_widget.dart' show CheckoutWidget;
+export '/pages/checkout_payment/checkout_payment_widget.dart'
+    show CheckoutPaymentWidget;
+export '/pages/confirmaca_pagamento/confirmaca_pagamento_widget.dart'
+    show ConfirmacaPagamentoWidget;

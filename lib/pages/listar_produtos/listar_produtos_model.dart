@@ -8,6 +8,11 @@ class ListarProdutosModel extends FlutterFlowModel<ListarProdutosWidget> {
   ///  State fields for stateful widgets in this page.
 
   Stream<List<CupcakesRow>>? gridViewSupabaseStream;
+  // State field(s) for Checkbox widget.
+  Map<CupcakesRow, bool> checkboxValueMap = {};
+  List<CupcakesRow> get checkboxCheckedItems =>
+      checkboxValueMap.entries.where((e) => e.value).map((e) => e.key).toList();
+
   // Model for MenuLateral component.
   late MenuLateralModel menuLateralModel;
 

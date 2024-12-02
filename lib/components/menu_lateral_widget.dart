@@ -27,6 +27,8 @@ class _MenuLateralWidgetState extends State<MenuLateralWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => MenuLateralModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -102,6 +104,36 @@ class _MenuLateralWidgetState extends State<MenuLateralWidget> {
               padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
               child: FFButtonWidget(
                 onPressed: () async {
+                  context.pushNamed('ListarProdutos');
+
+                  FFAppState().SideVisibility = false;
+                  safeSetState(() {});
+                },
+                text: 'Home',
+                options: FFButtonOptions(
+                  width: MediaQuery.sizeOf(context).width * 0.2,
+                  height: MediaQuery.sizeOf(context).height * 0.08,
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  iconPadding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: const Color(0x0014181B),
+                  textStyle: TextStyle(
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    fontSize: 26.0,
+                  ),
+                  elevation: 0.0,
+                  borderSide: BorderSide(
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    width: 2.0,
+                  ),
+                  borderRadius: BorderRadius.circular(24.0),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+              child: FFButtonWidget(
+                onPressed: () async {
                   context.pushNamed('EditarPerfil');
                 },
                 text: 'Editar perfil',
@@ -135,6 +167,44 @@ class _MenuLateralWidgetState extends State<MenuLateralWidget> {
                   safeSetState(() {});
                 },
                 text: 'Administrar loja',
+                options: FFButtonOptions(
+                  width: MediaQuery.sizeOf(context).width * 0.2,
+                  height: MediaQuery.sizeOf(context).height * 0.08,
+                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                  iconPadding:
+                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                  color: const Color(0x0014181B),
+                  textStyle: TextStyle(
+                    color: FlutterFlowTheme.of(context).primaryText,
+                    fontSize: 26.0,
+                  ),
+                  elevation: 0.0,
+                  borderSide: BorderSide(
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    width: 2.0,
+                  ),
+                  borderRadius: BorderRadius.circular(24.0),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+              child: FFButtonWidget(
+                onPressed: () async {
+                  context.pushNamed(
+                    'Entrar',
+                    queryParameters: {
+                      'user': serializeParam(
+                        false,
+                        ParamType.bool,
+                      ),
+                    }.withoutNulls,
+                  );
+
+                  FFAppState().SideVisibility = false;
+                  safeSetState(() {});
+                },
+                text: 'Sair',
                 options: FFButtonOptions(
                   width: MediaQuery.sizeOf(context).width * 0.2,
                   height: MediaQuery.sizeOf(context).height * 0.08,
