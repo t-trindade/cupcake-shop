@@ -182,7 +182,7 @@ class _ConfirmacaPagamentoWidgetState extends State<ConfirmacaPagamentoWidget>
                                     onPressed: () async {
                                       context.pushNamed('pedidos');
                                     },
-                                    text: 'Go to Order History',
+                                    text: 'Ir para o historico de pedidos',
                                     options: FFButtonOptions(
                                       width: 230.0,
                                       height: 50.0,

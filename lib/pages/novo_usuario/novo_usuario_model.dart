@@ -18,6 +18,17 @@ class NovoUsuarioModel extends FlutterFlowModel<NovoUsuarioWidget> {
   FocusNode? emailFocusNode;
   TextEditingController? emailTextController;
   String? Function(BuildContext, String?)? emailTextControllerValidator;
+  String? _emailTextControllerValidator(BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Field is required';
+    }
+
+    if (!RegExp(kTextValidatorEmailRegex).hasMatch(val)) {
+      return 'Has to be a valid email address.';
+    }
+    return null;
+  }
+
   // State field(s) for senha widget.
   FocusNode? senhaFocusNode;
   TextEditingController? senhaTextController;
@@ -48,6 +59,7 @@ class NovoUsuarioModel extends FlutterFlowModel<NovoUsuarioWidget> {
 
   @override
   void initState(BuildContext context) {
+    emailTextControllerValidator = _emailTextControllerValidator;
     senhaVisibility = false;
     confirmarSenhaVisibility = false;
   }

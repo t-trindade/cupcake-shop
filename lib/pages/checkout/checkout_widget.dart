@@ -359,6 +359,9 @@ class _CheckoutWidgetState extends State<CheckoutWidget> {
                     FFButtonWidget(
                       onPressed: () async {
                         context.safePop();
+                        FFAppState().orderItens = [];
+                        FFAppState().listValor = [];
+                        safeSetState(() {});
                       },
                       text: 'Cancelar pedido',
                       options: FFButtonOptions(
